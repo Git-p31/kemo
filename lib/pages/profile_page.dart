@@ -13,10 +13,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? _selectedImage;
 
+  // Функция для открытия панели администратора
   void _openAdminPanel(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
@@ -26,16 +27,16 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                leading: Icon(Icons.article, color: Colors.blue),
-                title: Text('Создать новость'),
+                leading: const Icon(Icons.article, color: Colors.blue),
+                title: const Text('Создать новость'),
                 onTap: () {
                   Navigator.pop(context);
                   _showCreateNewsDialog(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.event, color: Colors.green),
-                title: Text('Создать событие'),
+                leading: const Icon(Icons.event, color: Colors.green),
+                title: const Text('Создать событие'),
                 onTap: () {
                   Navigator.pop(context);
                   _showCreateEventDialog(context);
@@ -48,6 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  // Диалог для создания новости
   void _showCreateNewsDialog(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
@@ -56,17 +58,17 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Создать новость', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text('Создать новость', style: TextStyle(fontWeight: FontWeight.bold)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(labelText: 'Заголовок'),
+                decoration: const InputDecoration(labelText: 'Заголовок'),
               ),
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Описание'),
+                decoration: const InputDecoration(labelText: 'Описание'),
                 maxLines: 3,
               ),
             ],
@@ -74,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Закрыть', style: TextStyle(color: Colors.red)),
+              child: const Text('Закрыть', style: TextStyle(color: Colors.red)),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -91,12 +93,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   if (context.mounted) {
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Новость сохранена!')),
+                      const SnackBar(content: Text('Новость сохранена!')),
                     );
                   }
                 }
               },
-              child: Text('Сохранить'),
+              child: const Text('Сохранить'),
             ),
           ],
         );
@@ -104,6 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  // Диалог для создания события
   void _showCreateEventDialog(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
@@ -112,17 +115,17 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Создать событие', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text('Создать событие', style: TextStyle(fontWeight: FontWeight.bold)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(labelText: 'Название события'),
+                decoration: const InputDecoration(labelText: 'Название события'),
               ),
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Описание'),
+                decoration: const InputDecoration(labelText: 'Описание'),
                 maxLines: 3,
               ),
             ],
@@ -130,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Закрыть', style: TextStyle(color: Colors.red)),
+              child: const Text('Закрыть', style: TextStyle(color: Colors.red)),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -147,16 +150,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   if (context.mounted) {
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Событие создано!')),
+                      const SnackBar(content: Text('Событие создано!')),
                     );
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Заполните все поля!')),
+                    const SnackBar(content: Text('Заполните все поля!')),
                   );
                 }
               },
-              child: Text('Сохранить'),
+              child: const Text('Сохранить'),
             ),
           ],
         );
@@ -168,14 +171,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Профиль', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.blue[800], // Темно-синий
+        title: const Text('Профиль', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.blue[800],
         centerTitle: true,
         elevation: 4.0,
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -184,10 +187,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 Stack(
                   children: [
                     CircleAvatar(
-                      radius: 60, // Уменьшили размер
+                      radius: 60,
                       backgroundImage: _selectedImage != null
                           ? FileImage(_selectedImage!)
-                          : AssetImage('assets/profile_placeholder.png') as ImageProvider,
+                          : const AssetImage('assets/profile_placeholder.png') as ImageProvider,
                     ),
                     Positioned(
                       bottom: 0,
@@ -195,37 +198,38 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: GestureDetector(
                         onTap: _pickImage,
                         child: CircleAvatar(
-                          radius: 20, // Уменьшили размер кнопки
-                          backgroundColor: Colors.blue[800], // Темно-синий
-                          child: Icon(Icons.edit, size: 18, color: Colors.white),
+                          radius: 20,
+                          backgroundColor: Colors.blue[800],
+                          child: const Icon(Icons.edit, size: 18, color: Colors.white),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'Имя пользователя',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 5),
+                const Text(
                   'email@example.com',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () => _openAdminPanel(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[800], // Темно-синий
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    backgroundColor: Colors.blue[800],
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 4,
                   ),
-                  child: Text('Админ панель', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                  child: const Text('Админ панель', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -236,8 +240,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile =
-    await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {

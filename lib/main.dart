@@ -1,30 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:kemo/pages/news_page.dart';
 import 'package:kemo/pages/events_page.dart';
 import 'package:kemo/pages/workshops_page.dart';
 import 'package:kemo/pages/stream_page.dart';
 import 'package:kemo/pages/projects_page.dart';
 import 'package:kemo/pages/settings_page.dart';
-import 'package:kemo/pages/profile_page.dart'; // Импорт профиля
-import 'package:kemo/pages/donation_page.dart'; // Импорт страницы пожертвования
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:kemo/pages/profile_page.dart';
+import 'package:kemo/pages/donation_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  } catch (e) {
-    if (kDebugMode) {
-      print('Firebase уже инициализирован: $e');
-    }
-  }
+  await Firebase.initializeApp();
 
   // Включаем режим скрытия системных кнопок
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -158,17 +147,9 @@ class MyHomePageState extends State<MyHomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const ProfilePage()),
-                      );
-                    },
-                    child: const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage('assets/profile_placeholder.png'),
-                    ),
+                  const CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/profile_placeholder.png'),
                   ),
                   const SizedBox(height: 10),
                   const Text(

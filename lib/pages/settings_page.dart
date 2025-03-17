@@ -74,6 +74,7 @@ class SettingsPageState extends State<SettingsPage> {
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: Colors.grey.withOpacity(0.5)),
         color: _isDarkMode ? Colors.green : Colors.grey[800],
       ),
@@ -105,6 +106,7 @@ class SettingsPageState extends State<SettingsPage> {
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: Colors.grey.withOpacity(0.5)),
       ),
       child: Row(
@@ -130,6 +132,7 @@ class SettingsPageState extends State<SettingsPage> {
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: Colors.grey.withOpacity(0.5)),
       ),
       child: Row(

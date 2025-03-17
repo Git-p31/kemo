@@ -5,6 +5,7 @@ class DonationPage extends StatefulWidget {
   const DonationPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _DonationPageState createState() => _DonationPageState();
 }
 
